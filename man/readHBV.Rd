@@ -4,7 +4,7 @@
 \alias{readHBV}
 \title{read nve data}
 \usage{
-readHBV(fileName = "")
+readHBV(fileName = "data/dew_00400000.out")
 }
 \description{
 This function read the HBV format data.
