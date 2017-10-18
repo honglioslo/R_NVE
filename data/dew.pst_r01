@@ -1,0 +1,66 @@
+pcf
+* control data
+restart estimation
+   35    1       3     0   1
+   3     1       single point   1    0    0
+   0.0   2.0     0.3    0.03    1
+   3.0   3.0     0.001
+   0.1
+   30    0.01    3      3       0.01     3
+   0     0       0
+* singular value decomposition
+1
+11 5e-7
+0
+* group definitions and derivative data
+grad    relative    0.01    0.0      always_2    2.0    parabolic
+surf    relative    0.01    0.0      always_2    2.0    parabolic
+soil    relative    0.01    0.0      always_2    2.0    parabolic
+* parameter data
+             pgrl             none           factor     1.092670e+00         0.800000         1.200000             grad         1.000000         0.000000                1
+             pcor              log           factor     1.265086e+00            1.000           1.3000             grad         1.000000         0.000000                1
+             scor              log           factor     1.031189e+00          0.80000           1.1000             grad         1.000000         0.000000                1
+             tdry              log           factor     5.876619e-01          0.40000           0.8000             grad        -1.000000         0.000000                1
+             epol              log           factor     2.432043e-04            1e-05            1e-03             surf         1.000000         0.000000                1
+             klak              log           factor     2.397937e-03            1e-05            1e-02             grad         1.000000         0.000000                1
+             epo0              log           factor     1.975433e-04            1e-05            1e-03             surf         1.000000         0.000000                1
+             ate0             none           factor     3.666876e+00         2.000000         5.000000             surf         1.000000        -4.000000                1
+             mte0             none           factor     4.773091e+00         2.000000         5.000000             surf         1.000000        -4.000000                1
+             sme0              log           factor     5.244344e-03            1e-04         0.010000             surf         1.000000         0.000000                1
+             fca0              log           factor     3.915383e-01         0.200000         0.500000             soil         1.000000         0.000000                1
+             bet0              log           factor     2.405365e+00         1.500000         4.000000             soil         1.000000         0.000000                1
+             kuz0              log           factor     5.183241e-01           0.4000         0.700000             soil         1.000000         0.000000                1
+             alf0              log           factor     1.250388e+00         1.000000         1.400000             soil         1.000000         0.000000                1
+             per0              log           factor     1.038293e-02            1e-04         0.050000             soil         1.000000         0.000000                1
+             klz0              log           factor     1.782286e-01            1e-03         0.300000             soil         1.000000         0.000000                1
+             epo1              log           factor     2.122325e-04            1e-05            1e-03             surf         1.000000         0.000000                1
+             ate1             none           factor     4.502890e+00         2.000000         5.000000             surf         1.000000        -4.000000                1
+             mte1             none           factor     4.141009e+00         2.000000         6.000000             surf         1.000000        -4.000000                1
+             sme1              log           factor     5.092477e-03            1e-04         0.010000             surf         1.000000         0.000000                1
+             fca1              log           factor     3.249435e-01         0.100000         0.400000             soil         1.000000         0.000000                1
+             bet1              log           factor     3.601545e+00         1.500000         4.000000             soil         1.000000         0.000000                1
+             kuz1              log           factor     6.313748e-01           0.4000         0.700000             soil         1.000000         0.000000                1
+             alf1              log           factor     1.624158e+00         1.000000         2.400000             soil         1.000000         0.000000                1
+             per1              log           factor     9.544993e-03            1e-04         0.050000             soil         1.000000         0.000000                1
+             klz1              log           factor     3.918288e-02            1e-03         0.100000             soil         1.000000         0.000000                1
+             ateg             none           factor     3.341856e+00         2.000000         5.000000             surf         1.000000        -4.000000                1
+             mteg             none           factor     2.906236e+00         2.000000         6.000000             surf         1.000000        -4.000000                1
+             smeg              log           factor     2.664845e-03            1e-04         0.010000             surf         1.000000         0.000000                1
+             imrg              log           factor     8.045402e-01         0.800000         1.200000             surf         1.000000         0.000000                1
+             betg              log           factor     2.692849e+00         1.500000         5.000000             soil         1.000000         0.000000                1
+             kuzg              log           factor     8.257023e-01           0.7000         1.000000             soil         1.000000         0.000000                1
+             alfg              log           factor     1.904361e+00          1.00000         2.400000             soil         1.000000         0.000000                1
+             perg              log           factor     4.842350e-02            1e-04         0.050000             soil         1.000000         0.000000                1
+             klzg              log           factor     7.744177e-02            1e-03         0.100000             soil         1.000000         0.000000                1
+* observation groups
+sim
+* observation data
+aaaaa                1      1.000000    sim
+* model command line
+./start_cal.sh
+* model input/output
+./Pars_0/hbv_common_parameters.tpl hbv_common_parameters.txt
+./Pars_0/hbv_landsurface_parameters.tpl hbv_landsurface_parameters.txt
+./Pars_0/hbv_soil_parameters.tpl hbv_soil_parameters.txt
+./Pars_0/obj_ins  run_obj.txt
+* prior information

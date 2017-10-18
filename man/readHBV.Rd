@@ -6,6 +6,9 @@
 \usage{
 readHBV(fileName = "data/dew_00400000.out")
 }
+\arguments{
+\item{fileName}{file to read.}
+}
 \description{
 This function read the HBV format data.
 }

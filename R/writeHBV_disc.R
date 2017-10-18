@@ -1,7 +1,8 @@
 #' writeHBV_disc.R
 #'
 #' This function write the HBV format discharge data.
-#' @fileName file to write.
+#' @param fileName file to write.
+
 #' @keywords data
 #' @export
 #' @examples

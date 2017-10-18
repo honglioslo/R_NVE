@@ -1,7 +1,7 @@
 #' read nve data
 #'
 #' This function read the HBV format data.
-#' @fileName file to read.
+#' @param fileName file to read.
 #' @keywords data
 #' @export
 #' @examples

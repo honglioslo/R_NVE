@@ -6,6 +6,11 @@
 \usage{
 writeHBV_metinput(DataZoo, fileName = "data/input_data.txt")
 }
+\arguments{
+\item{DataZoo}{data to write}
+
+\item{fileName}{file to write.}
+}
 \description{
 This function write the HBV format input met data.
 }
