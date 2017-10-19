@@ -13,8 +13,8 @@
 #' seNorgeDailyTimeSeriesDay()
 
 seNorgeDailyTimeSeriesDay <- function(x, y, s = s, e = e, var = "tm", path = "//hdata/grid/metdata/met_obs_v2.0") {
-  if (require("ncdf4")) {install.packages("ncdf4"); library(ncdf4)}
-  if (require("lubridate")) {install.packages("lubridate"); library(lubridate)}
+  if (! require("ncdf4")) {install.packages("ncdf4"); library(ncdf4)}
+  if (! require("lubridate")) {install.packages("lubridate"); library(lubridate)}
   if (length(x) != length(y)) stop("x and y are not at the same length")
   reMatrx <- NULL
   if (var == "tm") VarN <- c("TEMP1d", "mean_temperature")
@@ -23,8 +23,11 @@ seNorgeDailyTimeSeriesDay <- function(x, y, s = s, e = e, var = "tm", path = "//
   e <- as.Date(e)
 
   np <- length(x)
-  
-  nc <- nc_open(sprintf("%s/%s/%04d/%s_%04d_%02d_%02d.nc", path, var, var, year(s), year(s), month(s), day(s)),readunlim=F)
+
+  nc <- nc_open(sprintf("%s/%s/%04d/%s_%04d_%02d_%02d.nc", path, var, year(s), var, year(s), month(s), day(s)),readunlim=F)
+
+  sprintf("%s/%s/%04d/%s_%s.nc", path, var, year(s), format(s, "%Y_%mm_%dd"))
+
   X <- ncvar_get(nc, "X")
   Y <- ncvar_get(nc, "Y")
   nc_close(nc)
@@ -45,8 +48,8 @@ seNorgeDailyTimeSeriesDay <- function(x, y, s = s, e = e, var = "tm", path = "//
   nx <- nx - minX + 1
   ny <- ny - minY + 1
   for (iY in seq(s, e, by = "day")) {
-    print(sprintf("%s/%s/archive/seNorge_v2_1_%s_grid_%04d.nc", path, var, VarN[1], iY))
-  	nc <- nc_open(sprintf("%s/%s/%04d/%s_%04d_%02d_%02d.nc", path, var, var, year(iY), year(iY), month(iY), day(iY)),readunlim=F)
+
+  	nc <- nc_open(sprintf("%s/%s/%04d/%s_%04d_%02d_%02d.nc", path, var, year(iY), var, year(iY), month(iY), day(iY)),readunlim=F)
     ndays <- length(ncvar_get(nc, "time"))
 	  seNorgeData <- ncvar_get(nc, VarN[2], start=c(minX,minY,1), count=c(maxX-minX+1,maxY-minY+1,ndays))
 	#get <- seNorgeData[nx, ny, ]
