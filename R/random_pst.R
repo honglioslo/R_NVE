@@ -4,15 +4,15 @@
 #' @param infile file to read.
 #' @param outfile file to write.
 #' @param nout number of out file to write.
-#' @param dist distribution of values to follow, at prsent at only use runif.
+#' @param dist distribution of values to follow, at prsent at only use uniform.
 
 #' @keywords data
 #' @export
 #' @examples
 #' random_pst()
 
-random_pst <- function(infile = "data/dew.pst", outfile = "data/dew.pst_r", nout = 3, dist = "runif") {
-  library(readtext)
+random_pst <- function(infile = "data/dew.pst", outfile = "data/dew.pst_r", nout = 3, dist = "uniform") {
+  if (require("readtext")) {install.packages("readtext"); library(readtext)}
   intext <- readtext(infile, text_field = NULL)
 
   posStart = gregexpr('* parameter data', intext$text)
@@ -29,7 +29,9 @@ random_pst <- function(infile = "data/dew.pst", outfile = "data/dew.pst_r", nout
   fa <- 1000/rowMeans(cbind(minValue, maxValue))
   intValue <-matrix(ncol = nout, nrow = dim(paraText)[1])
   for (iPar in seq(dim(paraText)[1])) {
-    intValue[iPar,] <- runif(nout, min = minValue[iPar]*fa[iPar], max = maxValue[iPar]*fa[iPar])/fa[iPar]
+	if (dist == "uniform") {
+		intValue[iPar,] <- runif(nout, min = minValue[iPar]*fa[iPar], max = maxValue[iPar]*fa[iPar])/fa[iPar]
+	}
   }
 
   for (iPst in seq(nout)) {

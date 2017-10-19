@@ -5,7 +5,7 @@
 \title{generate several pst files with format and sepecific distribution}
 \usage{
 random_pst(infile = "data/dew.pst", outfile = "data/dew.pst_r", nout = 3,
-  dist = "runif")
+  dist = "uniform")
 }
 \arguments{
 \item{infile}{file to read.}
@@ -14,7 +14,7 @@ random_pst(infile = "data/dew.pst", outfile = "data/dew.pst_r", nout = 3,
 
 \item{nout}{number of out file to write.}
 
-\item{dist}{distribution of values to follow, at prsent at only use runif.}
+\item{dist}{distribution of values to follow, at prsent at only use uniform.}
 }
 \description{
 generate several pst files with format and sepecific distribution
