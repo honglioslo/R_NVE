@@ -4,15 +4,17 @@
 \alias{readHBV}
 \title{read nve data}
 \usage{
-readHBV(fileName = "data/dew_00400000.out")
+readHBV(fileName, na)
 }
 \arguments{
 \item{fileName}{file to read.}
+
+\item{na.rm}{if remove the null values, "NULL" not include, "NA" eller "any"}
 }
 \description{
-This function read the HBV format data.
+This function read the HBV format data and return a zoo object.
 }
 \examples{
-readHBV()
+readHBV(fileName = "data/dew_00400000.out", na = "NULL")
 }
 \keyword{data}

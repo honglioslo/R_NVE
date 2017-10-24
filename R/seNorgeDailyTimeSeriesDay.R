@@ -24,22 +24,20 @@ seNorgeDailyTimeSeriesDay <- function(x, y, s = s, e = e, var = "tm", path = "//
 
   np <- length(x)
 
-  nc <- nc_open(sprintf("%s/%s/%04d/%s_%04d_%02d_%02d.nc", path, var, year(s), var, year(s), month(s), day(s)),readunlim=F)
-
-  sprintf("%s/%s/%04d/%s_%s.nc", path, var, year(s), format(s, "%Y_%mm_%dd"))
+  nc <- nc_open(sprintf("%s/%s/%s/%s_%s.nc", path, var, format(as.Date(s), "%Y"), var, format(as.Date(s), "%Y_%m_%d")),readunlim=F)
 
   X <- ncvar_get(nc, "X")
   Y <- ncvar_get(nc, "Y")
   nc_close(nc)
-  xx <- matrix(rep(X, length(Y)), nrow = length(Y))
-  yy <- matrix(rep(Y, length(X)), ncol = length(X))
+  xx <- matrix(rep(X, length(Y)), nrow = length(Y), byrow = TRUE)
+  yy <- matrix(rep(Y, length(X)), ncol = length(X), byrow = FALSE)
   nx <- vector(length = np)
   ny <- vector(length = np)
   for (ip in seq(np)) {
-	dis <- (xx-x[ip])^2 + (yy-y[ip])^2
-	nearest <- which.min(dis)
-	nx[ip] <- which(X == xx[nearest])
-	ny[ip] <- which(Y == yy[nearest])
+	  dis <- (xx-x[ip])^2 + (yy-y[ip])^2
+	  nearest <- which.min(dis)
+	  nx[ip] <- which(X == xx[nearest])
+	  ny[ip] <- which(Y == yy[nearest])
   }
   minX <- min(nx)
   minY <- min(ny)
@@ -48,8 +46,7 @@ seNorgeDailyTimeSeriesDay <- function(x, y, s = s, e = e, var = "tm", path = "//
   nx <- nx - minX + 1
   ny <- ny - minY + 1
   for (iY in seq(s, e, by = "day")) {
-
-  	nc <- nc_open(sprintf("%s/%s/%04d/%s_%04d_%02d_%02d.nc", path, var, year(iY), var, year(iY), month(iY), day(iY)),readunlim=F)
+  	nc <- nc_open(sprintf("%s/%s/%s/%s_%s.nc", path, var, format(as.Date(iY, origin='1970-01-01'), "%Y"), var, format(as.Date(iY, origin='1970-01-01'), "%Y_%m_%d")),readunlim=F)
     ndays <- length(ncvar_get(nc, "time"))
 	  seNorgeData <- ncvar_get(nc, VarN[2], start=c(minX,minY,1), count=c(maxX-minX+1,maxY-minY+1,ndays))
 	#get <- seNorgeData[nx, ny, ]
@@ -58,3 +55,4 @@ seNorgeDailyTimeSeriesDay <- function(x, y, s = s, e = e, var = "tm", path = "//
   }
   return(reMatrx)
 }
+

@@ -4,7 +4,7 @@
 \alias{writeHBV_disc}
 \title{writeHBV_disc.R}
 \usage{
-writeHBV_disc(DataZoo, fileName = "data/discharge_data.txt")
+writeHBV_disc(DataZoo, fileName)
 }
 \arguments{
 \item{fileName}{file to write.}
@@ -13,6 +13,6 @@ writeHBV_disc(DataZoo, fileName = "data/discharge_data.txt")
 This function write the HBV format discharge data.
 }
 \examples{
-writeHBV_disc()
+writeHBV_disc(DataZoo, fileName =  "data/discharge_data.txt")
 }
 \keyword{data}
