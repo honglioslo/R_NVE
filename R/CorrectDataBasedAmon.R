@@ -1,4 +1,4 @@
-#' calculate daily zoo based on amonoly
+#' CorrectDataBasedAmon
 #'
 #' This function calculate daily amonoly from a zoo object.
 #' @param inZoo input time series.

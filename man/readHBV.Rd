@@ -4,12 +4,12 @@
 \alias{readHBV}
 \title{read nve data}
 \usage{
-readHBV(fileName, na)
+readHBV(fileName, na = "NULL")
 }
 \arguments{
 \item{fileName}{file to read.}
 
-\item{na.rm}{if remove the null values, "NULL" not include, "NA" eller "any"}
+\item{na.rm}{if remove the null values, "NULL" not include, "NA" eller "any"; default is "NULL"}
 }
 \description{
 This function read the HBV format data and return a zoo object.

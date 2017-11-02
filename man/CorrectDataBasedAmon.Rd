@@ -2,7 +2,7 @@
 % Please edit documentation in R/CorrectDataBasedAmon.R
 \name{CorrectDataBasedAmon}
 \alias{CorrectDataBasedAmon}
-\title{calculate daily zoo based on amonoly}
+\title{CorrectDataBasedAmon}
 \usage{
 CorrectDataBasedAmon(inZoo = inZoo, inAmon = inAmon)
 }
