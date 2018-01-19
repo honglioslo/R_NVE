@@ -13,14 +13,15 @@
 #' seNorgeDailyTimeSeriesYear()
 
 seNorgeDailyTimeSeriesYear <- function(x, y, s = s, e = e, var = "tm", path = "//hdata/grid/metdata/met_obs_v2.1") {
-  library(ncdf4)
+  if (! require("ncdf4")) {install.packages("ncdf4"); library(ncdf4)}
+  if (! require("lubridate")) {install.packages("lubridate"); library(lubridate)}
   if (length(x) != length(y)) stop("x and y are not at the same length")
   reMatrx <- NULL
   if (var == "tm") VarN <- c("TEMP1d", "mean_temperature")
   if (var == "rr") VarN <- c("PREC1d", "precipitation_amount")
 
   np <- length(x)
-  nc <- nc_open(sprintf("%s/%s/archive/seNorge_v2_1_%s_grid_%04d.nc", path, var, VarN[1], s),readunlim=F)
+  nc <- nc_open(sprintf("%s/%s/archive/seNorge_v2_1_%s_grid_%04d.nc", path, var, VarN[1], as.numeric(s)),readunlim=F)
   X <- ncvar_get(nc, "X")
   Y <- ncvar_get(nc, "Y")
   nc_close(nc)
