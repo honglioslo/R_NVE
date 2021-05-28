@@ -1,0 +1,16 @@
+#!/usr/bin/env Rscript
+args = commandArgs(trailingOnly=TRUE)
+print(args)
+PathSim <- args[1]
+runKGE <- as.numeric(read.table(sprintf("%s/run_obj.txt", PathSim), header = FALSE))
+snoRMSE <- as.numeric(read.table(sprintf("%s/sno_obj.txt", PathSim), header = FALSE))
+isRMSE <- as.numeric(read.table(sprintf("%s/is_obj.txt", PathSim), header = FALSE))
+obj <- runKGE - min(0.25, snoRMSE/2000) - min(0.50, isRMSE/500000)
+write.table(obj, file = sprintf("%s/obj.txt", PathSim), quote = FALSE, row.names = FALSE, col.names = FALSE, sep = ";")
+print(sprintf(" final obj runKGE - min(0.25, snoRMSE/2000) - min(0.5, isRMSE/500000): %.5f ", obj))
+print("\n runKGE")
+print(runKGE)
+print("\n sno")
+print(snoRMSE)
+print("\n is")
+print(isRMSE)
