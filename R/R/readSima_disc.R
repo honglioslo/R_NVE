@@ -6,14 +6,13 @@
 #' @keywords data
 #' @export
 #' @examples
-#' readHBV(fileName = "data/dew_00400000.out", na = "NULL", skip = 0)
+#' readSima_disc(fileName = "data/dew_00400000.out", na = "NULL", skip = 1)
 
-readHBV <- function(fileName, na = "NULL", skip = 0) {
+readSima_disc <- function(fileName, na = "NULL", skip = 1) {
 	if ( ! require(zoo) )        { install.packages("zoo");        library(zoo) }
-	#print(fileName)
-	ObsRunoff <- read.table(fileName, header = FALSE, skip = skip)
+	ObsRunoff <- read.table(fileName, header = FALSE, skip = skip, sep = ",")
 	ObsRunoff[which(ObsRunoff[,2] == -9999),2] <- NA
-	ObsDates <- as.Date(ObsRunoff[,1], format = "%Y%m%d/1200")
+	ObsDates <- as.Date(ObsRunoff[,1], format = "%Y.%m.%d 12:00")
 	ObsRunoffZoo <- zoo(ObsRunoff[,2], ObsDates)
 	if (na == "NULL") {
 	  removeNULL <- which(is.na(ObsRunoffZoo))
